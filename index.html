@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Olga Pimenova — ML Researcher</title>
+<meta name="description" content="Olga (Hella) Pimenova — machine learning researcher working on protein structure prediction.">
+<meta name="theme-color" content="#070B14"
+<meta property="og:title" content="Olga Pimenova">
+<meta property="og:description" content="ML researcher — protein structure prediction.">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#070B14;
+    --ink-2:#101827;
+    --ink-3:#1B2537;
+    --paper:#E9EDF5;
+    --muted:#7B89A5;
+    /* pLDDT confidence ramp */
+    --c-vhigh:#0053D6;
+    --c-high:#65CBF3;
+    --c-low:#FFDB13;
+    --c-vlow:#FF7D45;
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--mono);
+    -webkit-font-smoothing:antialiased;
+    min-height:100svh;
+    display:flex;
+    justify-content:center;
+    padding:clamp(28px,7vw,64px) 20px calc(40px + env(safe-area-inset-bottom));
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background:radial-gradient(120% 70% at 50% -10%,rgba(0,83,214,.30),transparent 65%);
+    pointer-events:none;
+  }
+
+  main{width:100%;max-width:420px;position:relative}
+
+  /* ── portrait + backbone ───────────────────── */
+  .portrait{
+    position:relative;
+    width:min(280px,78vw);
+    aspect-ratio:1;
+    margin:0 auto clamp(24px,6vw,34px);
+  }
+  .portrait svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .seg{opacity:0;transition:opacity .5s ease}
+  .drawn .seg{opacity:1}
+  .photo-wrap{
+    position:absolute;
+    inset:17%;
+    border-radius:50%;
+    overflow:hidden;
+    background:var(--ink-2);
+    box-shadow:0 0 0 1px rgba(101,203,243,.22), 0 24px 60px -24px rgba(0,0,0,.9);
+    display:grid;place-items:center;
+  }
+  .photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+  .initials{
+    font-family:var(--display);
+    font-size:56px;font-weight:700;letter-spacing:-.03em;
+    color:var(--muted);
+  }
+
+  /* ── identity ──────────────────────────────── */
+  .eyebrow{
+    margin:0 0 14px;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--c-high);
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(44px,13vw,60px);
+    line-height:.92;
+    letter-spacing:-.035em;
+    margin:0;
+  }
+  .alias{
+    margin:12px 0 0;
+    font-size:13px;color:var(--muted);
+  }
+  .alias b{color:var(--paper);font-weight:500}
+  .bio{
+    margin:18px 0 0;
+    font-size:13.5px;line-height:1.65;color:var(--muted);
+    max-width:34ch;
+  }
+  .bio strong{color:var(--paper);font-weight:400}
+
+  .rule{
+    height:1px;border:0;margin:clamp(28px,7vw,38px) 0 6px;
+    background:linear-gradient(90deg,var(--c-vhigh),var(--c-high) 35%,var(--c-low) 70%,var(--c-vlow));
+    opacity:.5;
+  }
+
+  /* ── links ─────────────────────────────────── */
+  nav{display:flex;flex-direction:column}
+  .link{
+    display:flex;align-items:center;gap:14px;
+    padding:17px 4px;
+    border-bottom:1px solid var(--ink-3);
+    color:var(--paper);text-decoration:none;
+    transition:padding-left .25s ease,color .25s ease;
+  }
+  .link:hover,.link:focus-visible{padding-left:12px;color:var(--c-high)}
+  .link .label{
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    width:88px;flex:none;color:var(--muted);
+    transition:color .25s ease;
+  }
+  .link:hover .label,.link:focus-visible .label{color:var(--c-high)}
+  .link .handle{font-size:14px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .link .arrow{font-size:14px;color:var(--muted);transition:transform .25s ease}
+  .link:hover .arrow,.link:focus-visible .arrow{transform:translate(3px,-3px);color:var(--c-high)}
+
+  #save{
+    display:block;width:100%;margin-top:26px;
+    padding:16px;
+    background:transparent;color:var(--paper);
+    border:1px solid var(--ink-3);border-radius:2px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    cursor:pointer;
+    transition:border-color .25s ease,color .25s ease,background .25s ease;
+  }
+  #save:hover,#save:focus-visible{border-color:var(--c-high);color:var(--c-high);background:rgba(101,203,243,.06)}
+
+  footer{
+    margin-top:30px;
+    font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#4C5772;
+    display:flex;align-items:center;gap:8px;
+  }
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--c-vhigh)}
+
+  :focus-visible{outline:2px solid var(--c-high);outline-offset:3px}
+
+  @media (prefers-reduced-motion:reduce){
+    .seg{transition:none!important;transition-delay:0s!important}
+    *{transition-duration:.01ms!important}
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="portrait" id="portrait">
+    <svg viewBox="0 0 280 280" aria-hidden="true" id="backbone"></svg>
+    <div class="photo-wrap">
+      <!-- ▼ ЗАМЕНИ photo.jpg на свой файл (положи рядом с index.html) -->
+      <img src="photo.jpeg" alt="Olga Pimenova"
+           onerror="this.remove();document.getElementById('initials').hidden=false">
+      <div class="initials" id="initials" hidden>OP</div>
+    </div>
+  </div>
+
+  <p class="eyebrow">ML Researcher</p>
+  <h1>Olga<br>Pimenova</h1>
+  <!-- <p class="alias">also known as <b>Hella</b></p> -->
+
+  <!-- ▼ ЗАМЕНИ текст под себя -->
+  <!-- <p class="bio">Test-time training for protein structure prediction. -->
+     <strong>CIIRC CTU, Prague</strong> — visiting <strong>University of Waterloo</strong>, Fall 2026.</p>
+
+  <hr class="rule">
+
+  <!-- ▼ ЗАМЕНИ ссылки и хэндлы -->
+  <nav>
+    <a class="link" href="https://www.linkedin.com/in/olga-pimenova-4a08242b5/" target="_blank" rel="noopener">
+      <span class="label">LinkedIn</span><span class="handle">/in/olga-pimenova-4a08242b5</span><span class="arrow">↗</span>
+    </a>
+    <a class="link" href="https://instagram.com/hellocka_" target="_blank" rel="noopener">
+      <span class="label">Instagram</span><span class="handle">@hellocka_</span><span class="arrow">↗</span>
+    </a>
+    <a class="link" href="https://t.me/HellaPim" target="_blank" rel="noopener">
+      <span class="label">Telegram</span><span class="handle">@HellaPim</span><span class="arrow">↗</span>
+    </a>
+    <a class="link" href="mailto:hella.pimenova@gmail.com">
+      <span class="label">Email</span><span class="handle">hella.pimenova@gmail.com</span><span class="arrow">↗</span>
+    </a>
+  </nav>
+
+  <button id="save">Save contact</button>
+
+  <footer><span class="dot"></span> Prague · Waterloo</footer>
+</main>
+
+<script>
+/* ── backbone trace, colored the way AlphaFold colors pLDDT ── */
+(function(){
+  const svg = document.getElementById('backbone');
+  const NS = 'http://www.w3.org/2000/svg';
+  const N = 240, cx = 140, cy = 140, R = 112;
+  const loops = [0.16, 0.49, 0.83];
+
+  const color = v => v > 90 ? '#0053D6' : v > 70 ? '#65CBF3' : v > 50 ? '#FFDB13' : '#FF7D45';
+
+  const pts = [], conf = [];
+  for (let i = 0; i < N; i++){
+    const t = i / (N - 1);
+    let c = 96;
+    loops.forEach((p, k) => {
+      const d = t - p;
+      c -= (54 - k * 7) * Math.exp(-(d * d) / (2 * 0.036 * 0.036));
+    });
+    const wob   = 5 * Math.sin(t * Math.PI * 6) + 3 * Math.sin(t * Math.PI * 13 + 1.2);
+    const helix = 3.4 * Math.sin(t * Math.PI * 44);
+    const r = R + wob + helix + (96 - c) * 0.22;
+    const a = -Math.PI / 2 + t * Math.PI * 2.04;
+    pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    conf.push(c);
+  }
+
+  for (let i = 0; i < N - 1; i++){
+    const s = document.createElementNS(NS, 'line');
+    s.setAttribute('class', 'seg');
+    s.setAttribute('x1', pts[i][0].toFixed(2));   s.setAttribute('y1', pts[i][1].toFixed(2));
+    s.setAttribute('x2', pts[i+1][0].toFixed(2)); s.setAttribute('y2', pts[i+1][1].toFixed(2));
+    s.setAttribute('stroke', color((conf[i] + conf[i+1]) / 2));
+    s.setAttribute('stroke-width', '3.4');
+    s.setAttribute('stroke-linecap', 'round');
+    s.style.transitionDelay = (i / N * 1.15).toFixed(3) + 's';
+    svg.appendChild(s);
+  }
+  requestAnimationFrame(() => requestAnimationFrame(
+    () => document.getElementById('portrait').classList.add('drawn')
+  ));
+})();
+
+/* ── save contact as .vcf ── */
+document.getElementById('save').addEventListener('click', function(){
+  const card = [
+    'BEGIN:VCARD','VERSION:3.0',
+    'N:Pimenova;Olga;;;',
+    'FN:Olga Pimenova',
+    'NICKNAME:Hella',
+    'TITLE:ML Researcher',
+    'ORG:CIIRC CTU Prague',
+    'EMAIL:hella.pimenova@gmail.com',
+    'URL:' + location.href,
+    'X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/USERNAME/',
+    'X-SOCIALPROFILE;TYPE=telegram:https://t.me/USERNAME',
+    'END:VCARD'
+  ].join('\n');
+  const url = URL.createObjectURL(new Blob([card], {type:'text/vcard'}));
+  const a = Object.assign(document.createElement('a'), {href:url, download:'olga-pimenova.vcf'});
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  this.textContent = 'Contact saved';
+  setTimeout(() => this.textContent = 'Save contact', 2200);
+});
+</script>
+</body>
+</html>
